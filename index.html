@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Personal Website</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 50px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        header p {
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+        nav {
+            background: #333;
+            padding: 10px 0;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #667eea;
+        }
+        .content {
+            margin-top: 30px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #4a4a4a;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        .project, .hobby {
+            background: #f9f9f9;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+        .project:hover, .hobby:hover {
+            transform: translateX(10px);
+        }
+        .contact-info {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .contact-info a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .contact-info a:hover {
+            color: #764ba2;
+        }
+        #theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #theme-toggle:hover {
+            background-color: #764ba2;
+        }
+        .dark-mode {
+            background-color: #2a2a2a;
+            color: #f0f0f0;
+        }
+        .dark-mode .content {
+            background: #3a3a3a;
+        }
+        .dark-mode h2 {
+            color: #f0f0f0;
+        }
+        .dark-mode .project, .dark-mode .hobby {
+            background: #2a2a2a;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Your Name</h1>
+            <p>Web Developer | Designer | Tech Enthusiast</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#" onclick="loadContent('home')">Home</a></li>
+            <li><a href="#" onclick="loadContent('projects')">My Projects</a></li>
+            <li><a href="#" onclick="loadContent('hobbies')">My Hobbies</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div id="content" class="content">
+            <!-- Content will be loaded here -->
+        </div>
+    </div>
+
+    <button id="theme-toggle">Toggle Dark Mode</button>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const content = document.getElementById('content');
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                themeToggle.textContent = 'Toggle Light Mode';
+            } else {
+                themeToggle.textContent = 'Toggle Dark Mode';
+            }
+        });
+
+        function loadContent(page) {
+            let htmlContent = '';
+            switch(page) {
+                case 'home':
+                    htmlContent = `
+                        <h2>About Me</h2>
+                        <p>Welcome to my personal website! I'm a passionate web developer with expertise in HTML, CSS, and JavaScript. I love creating responsive and user-friendly websites.</p>
+                        
+                        <h2>Contact</h2>
+                        <div class="contact-info">
+                            <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+                            <p>GitHub: <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a></p>
+                            <p>LinkedIn: <a href="https://www.linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
+                        </div>
+                    `;
+                    break;
+                case 'projects':
+                    htmlContent = `
+                        <h2>My Projects</h2>
+                        <div class="project">
+                            <h3>Project 1</h3>
+                            <p>A responsive e-commerce website built with React and Node.js.</p>
+                        </div>
+                        <div class="project">
+                            <h3>Project 2</h3>
+                            <p>An AI-powered chatbot using Python and natural language processing.</p>
+                        </div>
+                        <div class="project">
+                            <h3>Project 3</h3>
+                            <p>A mobile fitness tracking app developed with Flutter.</p>
+                        </div>
+                    `;
+                    break;
+                case 'hobbies':
+                    htmlContent = `
+                        <h2>My Hobbies</h2>
+                        <div class="hobby">
+                            <h3>Photography</h3>
+                            <p>I love capturing moments and exploring new perspectives through my camera lens.</p>
+                        </div>
+                        <div class="hobby">
+                            <h3>Hiking</h3>
+                            <p>Exploring nature trails and enjoying the great outdoors is my way of recharging.</p>
+                        </div>
+                        <div class="hobby">
+                            <h3>Cooking</h3>
+                            <p>Experimenting with new recipes and cuisines is both relaxing and rewarding for me.</p>
+                        </div>
+                    `;
+                    break;
+            }
+            content.innerHTML = htmlContent;
+            animateContent();
+        }
+
+        function animateContent() {
+            const elements = document.querySelectorAll('.project, .hobby');
+            elements.forEach((element, index) => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = `opacity 0.5s ease ${index * 0.1}s, transform 0.5s ease ${index * 0.1}s`;
+                setTimeout(() => {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }, 50);
+            });
+        }
+
+        // Load home content by default
+        loadContent('home');
+    </script>
+</body>
+</html>
